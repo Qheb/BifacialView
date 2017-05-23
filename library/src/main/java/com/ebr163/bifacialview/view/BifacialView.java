@@ -11,6 +11,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -48,7 +49,10 @@ public class BifacialView extends View {
     private int arrowHeight;
     private int arrowStrokeWidth;
     private boolean arrowFill;
-    private int arrowMargin;
+    private int arrowMarginDelimiter;
+    private int arrowMarginTop;
+    private int arrowMargingBottom;
+    private int arrowGravity;
     private float textSize;
     private int textColor;
     private String leftText;
@@ -60,6 +64,8 @@ public class BifacialView extends View {
     private Path arrowLeft;
     private Path arrowRight;
     private CornerPathEffect cornerPathEffect;
+
+    private int arrowVerticalPosition;
 
     public BifacialView(Context context) {
         super(context);
@@ -106,7 +112,10 @@ public class BifacialView extends View {
                         getContext().getResources().getDimensionPixelSize(R.dimen.text_size));
                 arrowWidth = a.getDimensionPixelSize(R.styleable.BifacialView_arrowWidth, dpToPx(getContext(),12));
                 arrowHeight = a.getDimensionPixelSize(R.styleable.BifacialView_arrowHeight, dpToPx(getContext(),10));
-                arrowMargin = a.getDimensionPixelSize(R.styleable.BifacialView_arrowMargin, dpToPx(getContext(), 5));
+                arrowMarginDelimiter = a.getDimensionPixelSize(R.styleable.BifacialView_arrowMarginDelimiter, dpToPx(getContext(), 5));
+                arrowMargingBottom = a.getDimensionPixelSize(R.styleable.BifacialView_arrowMarginBottom,0);
+                arrowMarginTop = a.getDimensionPixelSize(R.styleable.BifacialView_arrowMarginTop,0);
+                arrowGravity = a.getInt(R.styleable.BifacialView_arrowGravity, Gravity.CENTER_VERTICAL);
                 arrowStrokeWidth = a.getDimensionPixelSize(R.styleable.BifacialView_arrowStrokeWidth, 5);
                 arrowFill = a.getBoolean(R.styleable.BifacialView_arrowFill, true);
                 arrowCornerRadius = a.getDimensionPixelSize(R.styleable.BifacialView_arrowCornerRadius,0);
@@ -147,6 +156,15 @@ public class BifacialView extends View {
         if (leftText != null) {
             paint.getTextBounds(leftText, 0, leftText.length(), textBounds);
             leftTextWith = textBounds.width();
+        }
+
+        int gravityVertical = arrowGravity & Gravity.VERTICAL_GRAVITY_MASK;
+        if (gravityVertical == Gravity.TOP) {
+            arrowVerticalPosition = arrowMarginTop + arrowHeight/2;
+        } else if (gravityVertical == Gravity.BOTTOM) {
+            arrowVerticalPosition = height - arrowMargingBottom - arrowHeight/2;
+        } else {
+            arrowVerticalPosition = height/2 - arrowMargingBottom + arrowMarginTop;
         }
 
         recreateArrowLeft();
@@ -198,6 +216,7 @@ public class BifacialView extends View {
             drawableLeft.draw(canvas);
         }
 
+
         paint.setColor(delimiterColor);
         paint.setStrokeWidth(delimiterWidth);
         paint.setStyle(Paint.Style.STROKE);
@@ -246,17 +265,17 @@ public class BifacialView extends View {
 
     private void recreateArrowLeft() {
         arrowLeft.rewind();
-        arrowLeft.moveTo(delimiterPosition - delimiterWidth/2 - arrowMargin - arrowWidth, height / 2);
-        arrowLeft.lineTo(delimiterPosition - delimiterWidth/2 - arrowMargin, height / 2 - arrowHeight/2);
-        arrowLeft.lineTo(delimiterPosition - delimiterWidth/2 - arrowMargin, height / 2 + arrowHeight/2);
+        arrowLeft.moveTo(delimiterPosition - delimiterWidth/2 - arrowMarginDelimiter - arrowWidth, arrowVerticalPosition);
+        arrowLeft.lineTo(delimiterPosition - delimiterWidth/2 - arrowMarginDelimiter, arrowVerticalPosition - arrowHeight/2);
+        arrowLeft.lineTo(delimiterPosition - delimiterWidth/2 - arrowMarginDelimiter, arrowVerticalPosition + arrowHeight/2);
         arrowLeft.close();
     }
 
     private void recreateArrowRight() {
         arrowRight.rewind();
-        arrowRight.moveTo(delimiterPosition + delimiterWidth/2 + arrowMargin + arrowWidth, height / 2);
-        arrowRight.lineTo(delimiterPosition + delimiterWidth/2 + arrowMargin, height / 2 - arrowHeight/2);
-        arrowRight.lineTo(delimiterPosition + delimiterWidth/2 + arrowMargin, height / 2 + arrowHeight/2);
+        arrowRight.moveTo(delimiterPosition + delimiterWidth/2 + arrowMarginDelimiter + arrowWidth, arrowVerticalPosition);
+        arrowRight.lineTo(delimiterPosition + delimiterWidth/2 + arrowMarginDelimiter, arrowVerticalPosition - arrowHeight/2);
+        arrowRight.lineTo(delimiterPosition + delimiterWidth/2 + arrowMarginDelimiter, arrowVerticalPosition + arrowHeight/2);
         arrowRight.close();
     }
 

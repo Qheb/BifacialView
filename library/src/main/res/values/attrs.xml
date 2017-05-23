@@ -11,7 +11,9 @@
         <attr name="arrowFill" format="boolean"/>
         <attr name="arrowStrokeWidth" format="dimension"/>
         <attr name="arrowCornerRadius" format="dimension"/>
-        <attr name="arrowMargin" format="dimension"/>
+        <attr name="arrowMarginDelimiter" format="dimension"/>
+        <attr name="arrowMarginTop" format="dimension"/>
+        <attr name="arrowMarginBottom" format="dimension"/>
         <attr name="arrowVisibility" format="boolean" />
         <attr name="textSize" format="dimension" />
         <attr name="textColor" format="color" />
@@ -21,6 +23,23 @@
             <enum name="all" value="0" />
             <enum name="delimiter" value="1" />
         </attr>
-
+        <attr name="arrowGravity">
+            //We reuse flags from the Android SDK but only vertical gravities are taken into account
+            //https://stackoverflow.com/questions/9531177/correct-format-for-androidgravity-in-attrs-xml
+            <flag name="bottom" value="80" />
+            <flag name="center" value="17" />
+            <flag name="center_horizontal" value="1" />
+            <flag name="center_vertical" value="16" />
+            <flag name="clip_horizontal" value="8" />
+            <flag name="clip_vertical" value="128" />
+            <flag name="end" value="8388613" />
+            <flag name="fill" value="119" />
+            <flag name="fill_horizontal" value="7" />
+            <flag name="fill_vertical" value="112" />
+            <flag name="left" value="3" />
+            <flag name="right" value="5" />
+            <flag name="start" value="8388611" />
+            <flag name="top" value="48" />
+        </attr>
     </declare-styleable>
 </resources>
