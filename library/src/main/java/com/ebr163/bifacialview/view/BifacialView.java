@@ -306,4 +306,13 @@ public class BifacialView extends View {
         this.leftText = text;
         invalidate();
     }
+
+    public void setDelimiterRatio(float ratio){
+        this.delimiterPosition = (int) (ratio * width);
+    }
+
+    public float getDelimiterRatio(){
+        if (width == 0) return -1;
+        return (float) delimiterPosition / width;
+    }
 }
