@@ -1,7 +1,11 @@
 package com.ebr163.bifacialview;
 
+import android.animation.FloatEvaluator;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
@@ -15,7 +19,7 @@ public class SimpleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simple);
-        final BifacialView view = (BifacialView) findViewById(R.id.view);
+        final BifacialView bifacialView = (BifacialView) findViewById(R.id.view);
         Glide.with(this)
                 .load("https://files4.adme.ru/files/news/part_149/1494765/29530665-262592-3-0-1491487588-1491487592-650-bf845cd25e-1491558012.jpg")
                 .listener(new RequestListener<String, GlideDrawable>() {
@@ -26,7 +30,7 @@ public class SimpleActivity extends AppCompatActivity {
 
                     @Override
                     public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                        view.setDrawableRight(resource);
+                        bifacialView.setDrawableRight(resource);
                         return false;
                     }
                 }).preload();
@@ -41,9 +45,25 @@ public class SimpleActivity extends AppCompatActivity {
 
                     @Override
                     public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                        view.setDrawableLeft(resource);
+                        bifacialView.setDrawableLeft(resource);
                         return false;
                     }
                 }).preload();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final BifacialView bifacialView = (BifacialView) findViewById(R.id.view);
+        final ObjectAnimator objectAnimator = ObjectAnimator.ofObject(bifacialView, "delimiterRatio", new FloatEvaluator(), 0.5f, 0.8f, 0.5f);
+
+        objectAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        objectAnimator.setDuration(1000);
+        bifacialView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                objectAnimator.start();
+            }
+        },100);
     }
 }
