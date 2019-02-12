@@ -99,28 +99,28 @@ public class BifacialView extends View {
                     0, 0);
             int arrowCornerRadius;
             try {
-                drawableLeft = a.getDrawable(R.styleable.BifacialView_drawableLeft);
-                drawableRight = a.getDrawable(R.styleable.BifacialView_drawableRight);
-                delimiterColor = a.getColor(R.styleable.BifacialView_delimiterColor, Color.WHITE);
-                delimiterWidth = a.getDimensionPixelSize(R.styleable.BifacialView_delimiterWidth,3);
-                arrowColor = a.getColor(R.styleable.BifacialView_arrowColor, Color.WHITE);
-                arrowVisible = a.getBoolean(R.styleable.BifacialView_arrowVisibility, false);
-                leftText = a.getString(R.styleable.BifacialView_leftText);
-                rightText = a.getString(R.styleable.BifacialView_rightText);
-                textColor = a.getColor(R.styleable.BifacialView_textColor, Color.WHITE);
-                textSize = a.getDimensionPixelSize(R.styleable.BifacialView_textSize,
+                drawableLeft = a.getDrawable(R.styleable.BifacialView_bv_drawableLeft);
+                drawableRight = a.getDrawable(R.styleable.BifacialView_bv_drawableRight);
+                delimiterColor = a.getColor(R.styleable.BifacialView_bv_delimiterColor, Color.WHITE);
+                delimiterWidth = a.getDimensionPixelSize(R.styleable.BifacialView_bv_delimiterWidth,3);
+                arrowColor = a.getColor(R.styleable.BifacialView_bv_arrowColor, Color.WHITE);
+                arrowVisible = a.getBoolean(R.styleable.BifacialView_bv_arrowVisibility, false);
+                leftText = a.getString(R.styleable.BifacialView_bv_leftText);
+                rightText = a.getString(R.styleable.BifacialView_bv_rightText);
+                textColor = a.getColor(R.styleable.BifacialView_bv_textColor, Color.WHITE);
+                textSize = a.getDimensionPixelSize(R.styleable.BifacialView_bv_textSize,
                         getContext().getResources().getDimensionPixelSize(R.dimen.text_size));
-                arrowWidth = a.getDimensionPixelSize(R.styleable.BifacialView_arrowWidth, dpToPx(getContext(),12));
-                arrowHeight = a.getDimensionPixelSize(R.styleable.BifacialView_arrowHeight, dpToPx(getContext(),10));
-                arrowMarginDelimiter = a.getDimensionPixelSize(R.styleable.BifacialView_arrowMarginDelimiter, dpToPx(getContext(), 5));
-                arrowMargingBottom = a.getDimensionPixelSize(R.styleable.BifacialView_arrowMarginBottom,0);
-                arrowMarginTop = a.getDimensionPixelSize(R.styleable.BifacialView_arrowMarginTop,0);
-                arrowGravity = a.getInt(R.styleable.BifacialView_arrowGravity, Gravity.CENTER_VERTICAL);
-                arrowStrokeWidth = a.getDimensionPixelSize(R.styleable.BifacialView_arrowStrokeWidth, 5);
-                arrowFill = a.getBoolean(R.styleable.BifacialView_arrowFill, true);
-                arrowCornerRadius = a.getDimensionPixelSize(R.styleable.BifacialView_arrowCornerRadius,0);
+                arrowWidth = a.getDimensionPixelSize(R.styleable.BifacialView_bv_arrowWidth, dpToPx(getContext(),12));
+                arrowHeight = a.getDimensionPixelSize(R.styleable.BifacialView_bv_arrowHeight, dpToPx(getContext(),10));
+                arrowMarginDelimiter = a.getDimensionPixelSize(R.styleable.BifacialView_bv_arrowMarginDelimiter, dpToPx(getContext(), 5));
+                arrowMargingBottom = a.getDimensionPixelSize(R.styleable.BifacialView_bv_arrowMarginBottom,0);
+                arrowMarginTop = a.getDimensionPixelSize(R.styleable.BifacialView_bv_arrowMarginTop,0);
+                arrowGravity = a.getInt(R.styleable.BifacialView_bv_arrowGravity, Gravity.CENTER_VERTICAL);
+                arrowStrokeWidth = a.getDimensionPixelSize(R.styleable.BifacialView_bv_arrowStrokeWidth, 5);
+                arrowFill = a.getBoolean(R.styleable.BifacialView_bv_arrowFill, true);
+                arrowCornerRadius = a.getDimensionPixelSize(R.styleable.BifacialView_bv_arrowCornerRadius,0);
 
-                if (a.getInteger(R.styleable.BifacialView_touchMode, 0) == 0) {
+                if (a.getInteger(R.styleable.BifacialView_bv_touchMode, 0) == 0) {
                     touchMode = TouchMode.ALL;
                 } else {
                     touchMode = TouchMode.DELIMITER;

@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="BifacialView">
-        <attr name="drawableLeft" format="reference" />
-        <attr name="drawableRight" format="reference" />
-        <attr name="delimiterColor" format="color" />
-        <attr name="delimiterWidth" format="dimension" />
-        <attr name="arrowColor" format="color" />
-        <attr name="arrowWidth" format="dimension"/>
-        <attr name="arrowHeight" format="dimension"/>
-        <attr name="arrowFill" format="boolean"/>
-        <attr name="arrowStrokeWidth" format="dimension"/>
-        <attr name="arrowCornerRadius" format="dimension"/>
-        <attr name="arrowMarginDelimiter" format="dimension"/>
-        <attr name="arrowMarginTop" format="dimension"/>
-        <attr name="arrowMarginBottom" format="dimension"/>
-        <attr name="arrowVisibility" format="boolean" />
-        <attr name="textSize" format="dimension" />
-        <attr name="textColor" format="color" />
-        <attr name="leftText" format="string" />
-        <attr name="rightText" format="string" />
-        <attr name="touchMode" format="enum">
+        <attr name="bv_drawableLeft" format="reference" />
+        <attr name="bv_drawableRight" format="reference" />
+        <attr name="bv_delimiterColor" format="color" />
+        <attr name="bv_delimiterWidth" format="dimension" />
+        <attr name="bv_arrowColor" format="color" />
+        <attr name="bv_arrowWidth" format="dimension"/>
+        <attr name="bv_arrowHeight" format="dimension"/>
+        <attr name="bv_arrowFill" format="boolean"/>
+        <attr name="bv_arrowStrokeWidth" format="dimension"/>
+        <attr name="bv_arrowCornerRadius" format="dimension"/>
+        <attr name="bv_arrowMarginDelimiter" format="dimension"/>
+        <attr name="bv_arrowMarginTop" format="dimension"/>
+        <attr name="bv_arrowMarginBottom" format="dimension"/>
+        <attr name="bv_arrowVisibility" format="boolean" />
+        <attr name="bv_textSize" format="dimension" />
+        <attr name="bv_textColor" format="color" />
+        <attr name="bv_leftText" format="string" />
+        <attr name="bv_rightText" format="string" />
+        <attr name="bv_touchMode" format="enum">
             <enum name="all" value="0" />
             <enum name="delimiter" value="1" />
         </attr>
-        <attr name="arrowGravity">
+        <attr name="bv_arrowGravity">
             //We reuse flags from the Android SDK but only vertical gravities are taken into account
             //https://stackoverflow.com/questions/9531177/correct-format-for-androidgravity-in-attrs-xml
             <flag name="bottom" value="80" />
